@@ -443,11 +443,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\git\\Moqas\\Moqas\\Moqas.csproj",
+      "projectUniqueName": "E:\\git\\Moqas\\Moqas\\backend\\Moqas.csproj",
       "projectName": "Moqas",
-      "projectPath": "E:\\git\\Moqas\\Moqas\\Moqas.csproj",
+      "projectPath": "E:\\git\\Moqas\\Moqas\\backend\\Moqas.csproj",
       "packagesPath": "C:\\Users\\Ali\\.nuget\\packages\\",
-      "outputPath": "E:\\git\\Moqas\\Moqas\\obj\\",
+      "outputPath": "E:\\git\\Moqas\\Moqas\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
