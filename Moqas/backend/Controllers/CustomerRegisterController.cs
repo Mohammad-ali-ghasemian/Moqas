@@ -18,7 +18,7 @@ namespace Moqas.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(CustomerRegister request)
         {
-            if (!CustomerRegisterService.CheckEmail(_context, request))
+            if (CustomerRegisterService.CheckEmail(_context, request))
             {
                 return BadRequest("Customer Already Exists!");
             }
@@ -26,7 +26,7 @@ namespace Moqas.Controllers
             return Ok("Customer Successfully Created!");
         }
 
-        [HttpGet("alaki")]
-        public async Task<IActionResult> Alaki(CustomerRegister request)
+        /*[HttpGet("alaki")]
+        public async Task<IActionResult> Alaki(CustomerRegister request)*/
     }
 }
