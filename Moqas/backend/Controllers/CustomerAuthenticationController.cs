@@ -28,5 +28,11 @@ namespace Moqas.Controllers
             return await CustomerLoginService.LoginRequestProcess(this, _context, request);
         }
 
+        [HttpPost("verify")]
+        public async Task<IActionResult> Verify(string token)
+        {
+            return await CustomerVerifyService.VerifyRequestProcess(this, _context, token);
+        }
+
     }
 }
