@@ -19,36 +19,13 @@ namespace Moqas.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(CustomerRegister request)
         {
-            if (CustomerRegisterService.CheckEmail(_context, request))
-            {
-                return BadRequest("Customer Already Exists!");
-            }
-            CustomerRegisterService.CreateCustomer(_context, request.Email, request.Password);
-            return Ok("Customer Successfully Created!");
+            return await CustomerRegisterService.RegisterRequestProcess(this, _context, request);
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(CustomerLogin request)
         {
-            /*var customer = await _context.Customers.FirstOrDefaultAsync(u => u.Email == request.Email);
-            if (customer == null)
-            {
-                return BadRequest("Customer Not Found!");
-            }
-
-            if (!CustomerLoginService.VerifyPasswordHash(request.Password, customer.PasswordHash, customer.PasswordSalt))
-            {
-                return BadRequest("Password Is Incorrect!");
-            }
-
-            if (customer.VerifiedAt == null)
-            {
-                return BadRequest("Customer Not Verified!");
-            }
-
-            return Ok($"Welcome Back, {customer.Email}");*/
             return await CustomerLoginService.LoginRequestProcess(this, _context, request);
-
         }
 
     }
