@@ -26,16 +26,20 @@ namespace Moqas.Service
         public static async void CreateCustomer(CustomerContext context, string email, string password)
         {
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
-            var Customer = new Customer
+            var customer = new Customer
             {
                 Email = email,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                VerificationToken = CreateToken()
+                VerificationToken = CreateToken(4),
+                BrowserToken = CreateToken(16)
             };
 
-            context.Customers.Add(Customer);
-            await context.SaveChangesAsync();
+            context.Customers.Add(customer);
+            try
+            {
+                await context.SaveChangesAsync();
+            }catch(ObjectDisposedException ex) { }
         }
 
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
@@ -47,9 +51,9 @@ namespace Moqas.Service
             }
         }
 
-        private static string CreateToken()
+        private static string CreateToken(int n)
         {
-            return Convert.ToHexString(RandomNumberGenerator.GetBytes(32));
+            return Convert.ToHexString(RandomNumberGenerator.GetBytes(n));
         }
 
     }
