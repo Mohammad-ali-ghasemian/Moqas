@@ -26,3 +26,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+//TO DO LIST
+// login-register-verify ActionResult messages
+// send email from moqas -> SendVerificationEmail method in CustomerRegisterService class
