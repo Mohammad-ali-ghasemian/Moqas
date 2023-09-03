@@ -9,8 +9,8 @@ namespace Moqas.Controllers.Authentication
     [ApiController]
     public class CustomerAuthenticationController : ControllerBase
     {
-        CustomerContext _context;
-        public CustomerAuthenticationController(CustomerContext context)
+        MoqasContext _context;
+        public CustomerAuthenticationController(MoqasContext context)
         {
             _context = context;
         }

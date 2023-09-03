@@ -10,8 +10,8 @@ namespace Moqas.Controllers.Profile
     [ApiController]
     public class ProfileController : ControllerBase
     {
-        CustomerContext _context;
-        public ProfileController(CustomerContext context)
+        MoqasContext _context;
+        public ProfileController(MoqasContext context)
         {
             _context = context;
         }

@@ -17,7 +17,7 @@ namespace Moqas.Service.Authentication
             }
         }
 
-        public static async Task<IActionResult> LoginRequestProcess(ControllerBase controller, CustomerContext context, CustomerLogin request)
+        public static async Task<IActionResult> LoginRequestProcess(ControllerBase controller, MoqasContext context, CustomerLogin request)
         {
             var customer = await context.Customers.FirstOrDefaultAsync(u => u.Email == request.Email);
 

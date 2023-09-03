@@ -11,7 +11,7 @@ using Moqas.Model.Data;
 
 namespace Moqas.Migrations
 {
-    [DbContext(typeof(CustomerContext))]
+    [DbContext(typeof(MoqasContext))]
     [Migration("20230826132741_init")]
     partial class init
     {

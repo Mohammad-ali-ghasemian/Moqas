@@ -6,7 +6,7 @@ namespace Moqas.Service.Authentication
 {
     public class CustomerVerifyService
     {
-        public static async Task<IActionResult> VerifyRequestProcess(ControllerBase controller, CustomerContext context, string token)
+        public static async Task<IActionResult> VerifyRequestProcess(ControllerBase controller, MoqasContext context, string token)
         {
             var customer = context.Customers.FirstOrDefault(u => u.VerificationToken == token);
             if (customer == null)

@@ -8,7 +8,7 @@ namespace Moqas.Service.Authentication
 {
     public class CustomerRegisterService
     {
-        public static async Task<IActionResult> RegisterRequestProcess(ControllerBase controller, CustomerContext context, CustomerRegister request)
+        public static async Task<IActionResult> RegisterRequestProcess(ControllerBase controller, MoqasContext context, CustomerRegister request)
         {
             if (CheckDuplicateEmail(context, request))
             {
@@ -19,12 +19,12 @@ namespace Moqas.Service.Authentication
             return controller.Ok("Customer Successfully Created!");
         }
 
-        public static bool CheckDuplicateEmail(CustomerContext context, CustomerRegister request)
+        public static bool CheckDuplicateEmail(MoqasContext context, CustomerRegister request)
         {
             return context.Customers.Any(u => u.Email == request.Email);
         }
 
-        public static async void CreateCustomer(CustomerContext context, string email, string password)
+        public static async void CreateCustomer(MoqasContext context, string email, string password)
         {
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
             var customer = new Customer

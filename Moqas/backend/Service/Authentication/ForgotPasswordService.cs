@@ -7,7 +7,7 @@ namespace Moqas.Service.Authentication
 {
     public class ForgotPasswordService
     {
-        public static async Task<IActionResult> ForgotPasswordEmail(ControllerBase controller, CustomerContext context, string email)
+        public static async Task<IActionResult> ForgotPasswordEmail(ControllerBase controller, MoqasContext context, string email)
         {
             var customer = await context.Customers.FirstOrDefaultAsync(u => u.Email == email);
             if (customer == null)

@@ -7,9 +7,9 @@ namespace Moqas.Service.Profile
 {
     public class ProfileService
     {
-        public async static Task<Model.Profile.Profile> GetProfile(CustomerContext context, int customerId)
+        public async static Task<Model.Profile.Profile> GetProfile(MoqasContext context, int customerId)
         {
-            var customer = await context.Customers.FirstOrDefaultAsync(u => u.CustomerId == customerId);
+            var customer = await context.Customers.FirstOrDefaultAsync(u => u.Id == customerId);
 
             var profile = new Model.Profile.Profile
             {
@@ -20,12 +20,12 @@ namespace Moqas.Service.Profile
             return profile;
         }
 
-        public async static Task<IActionResult> UpdateEmail(ControllerBase controller, CustomerContext context, int customerId, string email)
+        public async static Task<IActionResult> UpdateEmail(ControllerBase controller, MoqasContext context, int customerId, string email)
         {
             if( CustomerRegisterService.CheckDuplicateEmail(context, new Model.Authentication.CustomerRegister { Email = email }) ){
                 return controller.BadRequest("Customer Already Exists!");
             }
-            var customer = await context.Customers.FirstOrDefaultAsync(u => u.CustomerId == customerId);
+            var customer = await context.Customers.FirstOrDefaultAsync(u => u.Id == customerId);
             customer.VerificationToken = CustomerRegisterService.CreateToken(4);
             context.Customers.Update(customer);
             context.SaveChanges();
@@ -34,7 +34,7 @@ namespace Moqas.Service.Profile
             return controller.Ok("Verification Email Sent Successfully!");
         }
 
-        public static async Task<IActionResult> VerifyRequestProcess(ControllerBase controller, CustomerContext context, string token, string email)
+        public static async Task<IActionResult> VerifyRequestProcess(ControllerBase controller, MoqasContext context, string token, string email)
         {
             var customer = context.Customers.FirstOrDefault(u => u.VerificationToken == token);
             if (customer == null)
@@ -48,9 +48,9 @@ namespace Moqas.Service.Profile
             return controller.Ok("New Email Verified!");
         }
 
-        public static async Task<IActionResult> UpdatePassword(ControllerBase controller, CustomerContext context, int id, string password)
+        public static async Task<IActionResult> UpdatePassword(ControllerBase controller, MoqasContext context, int id, string password)
         {
-            var customer = context.Customers.FirstOrDefault(u => u.CustomerId == id);
+            var customer = context.Customers.FirstOrDefault(u => u.Id == id);
 
             CustomerRegisterService.CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
             customer.PasswordHash = passwordHash;
