@@ -29,4 +29,5 @@ app.Run();
 
 //TO DO LIST
 // login-register-verify ActionResult messages
+// browser token
 // send email from moqas -> SendVerificationEmail method in CustomerRegisterService class

@@ -13,7 +13,7 @@ namespace Moqas.Service.Authentication
             email.From.Add(MailboxAddress.Parse("lesley.volkman@ethereal.email"));
             email.To.Add(MailboxAddress.Parse(Email));
             email.Subject = "Test email subject";
-            email.Body = new TextPart(TextFormat.Html) { Text = $"Welcome! Your {reason} code is :<br/><b>{token}</b>" };
+            email.Body = new TextPart(TextFormat.Html) { Text = $"Your {reason} code is :<br/><b>{token}</b>" };
 
             using var smtp = new SmtpClient();
             smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
