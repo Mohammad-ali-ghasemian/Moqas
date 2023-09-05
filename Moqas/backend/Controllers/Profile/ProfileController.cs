@@ -16,7 +16,7 @@ namespace Moqas.Controllers.Profile
             _context = context;
         }
 
-        [HttpGet("profile")]
+        [HttpGet("get-customer-profile")]
         public async Task<Model.Profile.Profile> Profile(int Id)
         {
             return await ProfileService.GetProfile(_context, Id);

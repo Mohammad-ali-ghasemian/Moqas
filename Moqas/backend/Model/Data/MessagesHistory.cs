@@ -9,7 +9,6 @@ namespace Moqas.Model.Data
         public string Sender { get; set; } = string.Empty;
         public string Message { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
-        public bool Status { get; set; } = false;
 
         //navigation properties
         public int ChatId { get; set; }
