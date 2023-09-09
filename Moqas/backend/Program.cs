@@ -28,7 +28,8 @@ app.MapControllers();
 app.Run();
 
 //TO DO LIST
-// login-register-verify ActionResult messages
+// ActionResult messages
 // browser token
 // send email from moqas -> SendVerificationEmail method in CustomerRegisterService class
 // send email from moqas whenever a new chat has started
+// update chat whenever another side has sent a message

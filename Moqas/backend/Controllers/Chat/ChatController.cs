@@ -19,7 +19,7 @@ namespace Moqas.Controllers.Chat
         }
 
         [HttpGet("get-all-messages")]
-        public async Task<List<MessagesHistory>> AllMessages(int chatId)
+        public async Task<List<MessagesHistory>> GetAllMessages(int chatId)
         {
             return await ChatService.GetChatMessages(_context, chatId);
         }
