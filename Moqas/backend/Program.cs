@@ -29,7 +29,7 @@ app.Run();
 
 //TO DO LIST
 // ActionResult messages
-// browser token
+// [done] browser token
 // send email from moqas -> SendVerificationEmail method in CustomerRegisterService class
 // send email from moqas whenever a new chat has started
 // update chat whenever another side has sent a message

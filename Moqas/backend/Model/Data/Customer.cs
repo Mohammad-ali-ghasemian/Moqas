@@ -11,6 +11,7 @@
         public string? PasswordResetToken { get; set; }
         public DateTime? ResetTokenExpires { get; set; }
         public string? BrowserToken { get; set; }
+        public DateTime? BrowserTokenExpires { get; set; }
 
         //navigation properties
         public List<Chat> Chat { get; set; }

@@ -33,7 +33,8 @@ namespace Moqas.Service.Authentication
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 VerificationToken = CreateToken(4),
-                BrowserToken = CreateToken(16)
+                BrowserToken = CreateToken(16),
+                BrowserTokenExpires = DateTime.Now.AddDays(4)
             };
 
             context.Customers.Add(customer);

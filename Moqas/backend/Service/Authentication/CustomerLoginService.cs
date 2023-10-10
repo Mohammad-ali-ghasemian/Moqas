@@ -36,6 +36,16 @@ namespace Moqas.Service.Authentication
                 return controller.BadRequest("Customer Not Verified!");
             }
 
+            customer.BrowserToken = CustomerRegisterService.CreateToken(16);
+            customer.BrowserTokenExpires = DateTime.Now.AddDays(4);
+
+            context.Customers.Update(customer);
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (ObjectDisposedException ex) { }
+
             return controller.Ok($"Welcome Back, {customer.Email}");
         }
     }
