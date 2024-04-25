@@ -8,6 +8,8 @@ namespace Moqas.Service.Authentication
 {
     public class CustomerLoginService
     {
+
+
         public static bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512(passwordSalt))
@@ -16,6 +18,8 @@ namespace Moqas.Service.Authentication
                 return computedHash.SequenceEqual(passwordHash);
             }
         }
+
+
 
         public static async Task<IActionResult> LoginRequestProcess(ControllerBase controller, MoqasContext context, CustomerLogin request)
         {

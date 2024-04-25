@@ -6,6 +6,8 @@ namespace Moqas.Service.Authentication
 {
     public class WebTokenService
     {
+
+
         public async static Task<IActionResult> GetBrowserToken(ControllerBase controller, MoqasContext context, int customerId)
         {
             var customer = context.Customers.FirstOrDefault(u => u.Id == customerId);
@@ -18,6 +20,8 @@ namespace Moqas.Service.Authentication
             return controller.Ok(customer.BrowserToken);
         }
 
+
+
         public async static Task<IActionResult> GetBrowserTokenExpires(ControllerBase controller, MoqasContext context, int customerId)
         {
             var customer = context.Customers.FirstOrDefault(u => u.Id == customerId);
@@ -29,6 +33,8 @@ namespace Moqas.Service.Authentication
 
             return controller.Ok(customer.BrowserTokenExpires);
         }
+
+
 
         public async static Task<IActionResult> GetBrowserData(ControllerBase controller, MoqasContext context, int customerId)
         {
@@ -48,6 +54,8 @@ namespace Moqas.Service.Authentication
 
             return controller.Ok(browserData);
         }
+
+
 
         public async static Task<IActionResult> ExtendBrowserTokenExpireDateTime(ControllerBase controller, MoqasContext context, int customerId, int extendDays)
         {
@@ -73,6 +81,8 @@ namespace Moqas.Service.Authentication
 
             return controller.Ok("Token Expires DateTime Updated!");
         }
+
+
 
         public async static Task<IActionResult> DeleteBrowserToken(ControllerBase controller, MoqasContext context, int customerId)
         {

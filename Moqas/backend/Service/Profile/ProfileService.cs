@@ -7,6 +7,8 @@ namespace Moqas.Service.Profile
 {
     public class ProfileService
     {
+
+
         public async static Task<Model.Profile.Profile> GetProfile(MoqasContext context, int customerId)
         {
             var customer = await context.Customers.FirstOrDefaultAsync(u => u.Id == customerId);
@@ -19,6 +21,8 @@ namespace Moqas.Service.Profile
             };
             return profile;
         }
+
+
 
         public async static Task<IActionResult> UpdateEmail(ControllerBase controller, MoqasContext context, int customerId, string email)
         {
@@ -34,6 +38,8 @@ namespace Moqas.Service.Profile
             return controller.Ok("Verification Email Sent Successfully!");
         }
 
+
+
         public static async Task<IActionResult> VerifyRequestProcess(ControllerBase controller, MoqasContext context, string token, string email)
         {
             var customer = context.Customers.FirstOrDefault(u => u.VerificationToken == token);
@@ -47,6 +53,8 @@ namespace Moqas.Service.Profile
 
             return controller.Ok("New Email Verified!");
         }
+
+
 
         public static async Task<IActionResult> UpdatePassword(ControllerBase controller, MoqasContext context, int id, string password)
         {

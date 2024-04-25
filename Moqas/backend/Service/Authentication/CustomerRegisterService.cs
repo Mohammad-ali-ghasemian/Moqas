@@ -8,6 +8,8 @@ namespace Moqas.Service.Authentication
 {
     public class CustomerRegisterService
     {
+
+
         public static async Task<IActionResult> RegisterRequestProcess(ControllerBase controller, MoqasContext context, CustomerRegister request)
         {
             if (CheckDuplicateEmail(context, request))
@@ -19,10 +21,14 @@ namespace Moqas.Service.Authentication
             return controller.Ok("Customer Successfully Created!");
         }
 
+
+
         public static bool CheckDuplicateEmail(MoqasContext context, CustomerRegister request)
         {
             return context.Customers.Any(u => u.Email == request.Email);
         }
+
+
 
         public static async void CreateCustomer(MoqasContext context, string email, string password)
         {
@@ -45,6 +51,8 @@ namespace Moqas.Service.Authentication
             catch (ObjectDisposedException ex) { }
         }
 
+
+
         public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512())
@@ -53,6 +61,8 @@ namespace Moqas.Service.Authentication
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
+
+
 
         public static string CreateToken(int n)
         {

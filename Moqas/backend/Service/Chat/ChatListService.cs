@@ -5,6 +5,8 @@ namespace Moqas.Service.Chat
 {
     public class ChatListService
     {
+
+
         public async static Task<IActionResult> GetChats(ControllerBase controller, MoqasContext context, int customerId, byte filter)
         {
             if (!IsCustomerExist(context, customerId))
@@ -48,6 +50,8 @@ namespace Moqas.Service.Chat
 
             return controller.Ok(convertedChats);
         }
+
+
 
         private static bool IsCustomerExist(MoqasContext context, int customerId)
         {

@@ -6,6 +6,8 @@ namespace Moqas.Service.Chat
 {
     public class ChatService
     {
+
+
         public async static Task<List<MessagesHistory>> GetChatMessages(MoqasContext context ,int chatId)
         {
             return context.MessagesHistory.Where(u => u.ChatId == chatId).ToList();
@@ -34,6 +36,8 @@ namespace Moqas.Service.Chat
             return controller.Ok("Message Inserted!");
         }
 
+
+
         public async static Task<IActionResult> AddCustomerMessage(ControllerBase controller, MoqasContext context, int chatId, string message)
         {
             var sender = context.Customers.FirstOrDefault(u => u.Id == context.Chats.FirstOrDefault(u => u.Id == chatId).CustomerId).Email;
@@ -44,6 +48,8 @@ namespace Moqas.Service.Chat
             AddMessage(controller, context, chatId, message, sender);
             return controller.Ok("Message Inserted!");
         }
+
+
 
         private async static void AddMessage(ControllerBase controller, MoqasContext context, int chatId, string message, string sender)
         {
@@ -61,6 +67,8 @@ namespace Moqas.Service.Chat
             }
             catch (ObjectDisposedException ex) { }
         }
+
+
 
         public async static Task<IActionResult> ChatLastMessage(ControllerBase controller, MoqasContext context, int chatId)
         {
@@ -105,6 +113,8 @@ namespace Moqas.Service.Chat
             catch (ObjectDisposedException ex) { }
             return controller.Ok("New Chat Inserted!");
         }
+
+
 
         public async static Task<IActionResult> EndChat(ControllerBase controller, MoqasContext context,int chatId)
         {
