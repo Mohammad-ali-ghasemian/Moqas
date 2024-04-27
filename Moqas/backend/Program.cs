@@ -28,9 +28,9 @@ app.MapControllers();
 app.Run();
 
 //TO DO LIST
-// ActionResult messages
+// [optional] ActionResult messages
 // [done] logout api & service
-// add api : get Token(s)
+// [done] add api : get Token(s)
 // [done] browser token
 // send email from moqas -> SendVerificationEmail method in CustomerRegisterService class
 // send email from moqas whenever a new chat has started
