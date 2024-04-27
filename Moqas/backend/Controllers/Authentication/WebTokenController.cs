@@ -44,5 +44,18 @@ namespace Moqas.Controllers.Authentication
         {
             return await WebTokenService.DeleteBrowserToken(this, _context, customerId);
         }
+
+
+        [HttpGet("get-verification-token")]
+        public async Task<IActionResult> GetVerificationToken(string email)
+        {
+            return await WebTokenService.GetVerificationToken(this, _context, email);
+        }
+
+        [HttpGet("get-resetPassword-token")]
+        public async Task<IActionResult> GetResetPasswordToken(string email)
+        {
+            return await WebTokenService.GetResetPasswordToken(this, _context, email);
+        }
     }
 }

@@ -105,5 +105,33 @@ namespace Moqas.Service.Authentication
             return controller.Ok("Browser Token And Expire DateTime Deleted!");
         }
 
+
+
+        public async static Task<IActionResult> GetVerificationToken(ControllerBase controller, MoqasContext context, string email)
+        {
+            var customer = context.Customers.FirstOrDefault(u => u.Email == email);
+
+            if (customer == null)
+            {
+                return controller.BadRequest("Customer Not Found!");
+            }
+
+            return controller.Ok(customer.VerificationToken);
+        }
+
+
+
+        public async static Task<IActionResult> GetResetPasswordToken(ControllerBase controller, MoqasContext context, string email)
+        {
+            var customer = context.Customers.FirstOrDefault(u => u.Email == email);
+
+            if (customer == null)
+            {
+                return controller.BadRequest("Customer Not Found!");
+            }
+
+            return controller.Ok(customer.PasswordResetToken);
+        }
+        
     }
 }
