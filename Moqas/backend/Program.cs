@@ -29,7 +29,7 @@ app.Run();
 
 //TO DO LIST
 // ActionResult messages
-// logout api & service
+// [done] logout api & service
 // add api : get Token(s)
 // [done] browser token
 // send email from moqas -> SendVerificationEmail method in CustomerRegisterService class
