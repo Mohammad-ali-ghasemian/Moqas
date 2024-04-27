@@ -45,5 +45,11 @@ namespace Moqas.Controllers.Authentication
             return await ResetPasswordService.ResetPasswordProcess(this, _context, request);
         }
 
+        [HttpPut("logout")]
+        public async Task<IActionResult> Logout(string token)
+        {
+            return await CustomerLogoutService.LogoutRequestProcess(this, _context, token);
+        }
+
     }
 }
