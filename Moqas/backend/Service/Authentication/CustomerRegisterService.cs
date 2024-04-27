@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Moqas.Model;
 using Moqas.Model.Authentication;
 using Moqas.Model.Data;
@@ -10,15 +11,15 @@ namespace Moqas.Service.Authentication
     {
 
 
-        public static async Task<IActionResult> RegisterRequestProcess(ControllerBase controller, MoqasContext context, CustomerRegister request)
+        public async static Task<IActionResult> RegisterRequestProcess(ControllerBase controller, MoqasContext context, CustomerRegister request)
         {
             if (CheckDuplicateEmail(context, request))
             {
                 return controller.BadRequest("Customer Already Exists!");
             }
             CreateCustomer(context, request.Email, request.Password);
-            EmailService.SendVerificationEmail(request.Email, context.Customers.FirstOrDefault(u => u.Email == request.Email).VerificationToken, "activation");
-            return controller.Ok("Customer Successfully Created!");
+            //EmailService.SendVerificationEmail(request.Email, context.Customers.FirstOrDefault(u => u.Email == request.Email).VerificationToken, "activation");
+            return controller.Ok("Customer Succesfully Created!");
         }
 
 
@@ -30,7 +31,7 @@ namespace Moqas.Service.Authentication
 
 
 
-        public static async void CreateCustomer(MoqasContext context, string email, string password)
+        public static void CreateCustomer(MoqasContext context, string email, string password)
         {
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
             var customer = new Customer
@@ -46,7 +47,7 @@ namespace Moqas.Service.Authentication
             context.Customers.Add(customer);
             try
             {
-                await context.SaveChangesAsync();
+                context.SaveChangesAsync();
             }
             catch (ObjectDisposedException ex) { }
         }
