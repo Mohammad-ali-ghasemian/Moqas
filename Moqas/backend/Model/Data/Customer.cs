@@ -1,4 +1,6 @@
-﻿namespace Moqas.Model.Data
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Moqas.Model.Data
 {
     public class Customer
     {
@@ -6,6 +8,8 @@
         public string Email { get; set; } = string.Empty;
         public byte[] PasswordHash { get; set; } = new byte[32];
         public byte[] PasswordSalt { get; set; } = new byte[32];
+        [DataType(DataType.Url)]
+        public string WebsiteLink { get; set; } = string.Empty;
         public string? VerificationToken { get; set; }
         public DateTime? VerifiedAt { get; set; }
         public string? PasswordResetToken { get; set; }
