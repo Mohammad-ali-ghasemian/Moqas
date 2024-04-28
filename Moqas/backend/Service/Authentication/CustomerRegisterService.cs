@@ -17,7 +17,7 @@ namespace Moqas.Service.Authentication
             {
                 return controller.BadRequest("Customer Already Exists!");
             }
-            CreateCustomer(context, request.Email, request.Password);
+            CreateCustomer(context, request.Email, request.Password, request.WebsiteLink);
             //EmailService.SendVerificationEmail(request.Email, context.Customers.FirstOrDefault(u => u.Email == request.Email).VerificationToken, "activation");
             return controller.Ok("Customer Succesfully Created!");
         }
@@ -31,7 +31,7 @@ namespace Moqas.Service.Authentication
 
 
 
-        public static void CreateCustomer(MoqasContext context, string email, string password)
+        public static void CreateCustomer(MoqasContext context, string email, string password, string websiteLink)
         {
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
             var customer = new Customer
@@ -39,6 +39,7 @@ namespace Moqas.Service.Authentication
                 Email = email,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
+                WebsiteLink = websiteLink,
                 VerificationToken = CreateToken(4),
                 BrowserToken = CreateToken(16),
                 BrowserTokenExpires = DateTime.Now.AddDays(4)
