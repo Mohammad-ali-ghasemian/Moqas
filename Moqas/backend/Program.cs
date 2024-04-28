@@ -35,7 +35,8 @@ app.Run();
 // send email from moqas -> SendVerificationEmail method in CustomerRegisterService class
 // send email from moqas whenever a new chat has started
 // update chat whenever another side has sent a message
-// [done] recieve site address while sign up
+// [done] receive site address while sign up
+// [done] add getUser api & Service
 // add bought package expire date
 // handle zarrin pall
 // host handle
