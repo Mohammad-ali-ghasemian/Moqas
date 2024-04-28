@@ -51,5 +51,11 @@ namespace Moqas.Controllers.Authentication
             return await CustomerLogoutService.LogoutRequestProcess(this, _context, token);
         }
 
+        [HttpGet("get-customer")]
+        public async Task<IActionResult> GetCustomer(bool token0Email1, string tokenEmail)
+        {
+            return await CustomerInfoService.GetCustomer(this, _context, token0Email1, tokenEmail);
+        }
+
     }
 }
