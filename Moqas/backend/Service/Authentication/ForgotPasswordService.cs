@@ -23,7 +23,7 @@ namespace Moqas.Service.Authentication
                 await context.SaveChangesAsync();
             }
             catch (ObjectDisposedException ex) { }
-            EmailService.SendVerificationEmail(email, customer.PasswordResetToken, "Reset Password");
+            // EmailService.SendVerificationEmail(email, customer.PasswordResetToken, "Reset Password");
 
             return controller.Ok("Reset Password Token Sent!");
         }

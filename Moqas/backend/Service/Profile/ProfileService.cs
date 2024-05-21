@@ -34,7 +34,7 @@ namespace Moqas.Service.Profile
             context.Customers.Update(customer);
             context.SaveChanges();
 
-            EmailService.SendVerificationEmail(email, customer.VerificationToken, "verification");
+            // EmailService.SendVerificationEmail(email, customer.VerificationToken, "verification");
             return controller.Ok("Verification Email Sent Successfully!");
         }
 

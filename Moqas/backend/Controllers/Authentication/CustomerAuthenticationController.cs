@@ -21,6 +21,12 @@ namespace Moqas.Controllers.Authentication
             return await CustomerRegisterService.RegisterRequestProcess(this, _context, request);
         }
 
+        [HttpPost("sendVerificationToken")]
+        public async Task<IActionResult> SendVerificationToken(string email)
+        {
+            return await EmailService.SendEmail(this, _context, email, 0);
+        }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login(CustomerLogin request)
         {
