@@ -18,7 +18,7 @@ namespace Moqas.Service.Authentication
                 return controller.BadRequest("Customer Already Exists!");
             }
             CreateCustomer(context, request.Email, request.Password, request.WebsiteLink);
-            //EmailService.SendVerificationEmail(request.Email, context.Customers.FirstOrDefault(u => u.Email == request.Email).VerificationToken, "activation");
+            EmailService.SendVerificationEmail(request.Email, context.Customers.FirstOrDefault(u => u.Email == request.Email).VerificationToken, "activation");
             return controller.Ok("Customer Succesfully Created!");
         }
 
