@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moqas.Model.Chat;
 using Moqas.Model.Data;
+using Moqas.Service.Authentication;
 
 namespace Moqas.Service.Chat
 {
@@ -112,6 +113,19 @@ namespace Moqas.Service.Chat
             }
             catch (ObjectDisposedException ex) { }
             return controller.Ok("New Chat Inserted!");
+        }
+
+
+
+        public async static Task<IActionResult> EmailNewChat(ControllerBase controller, MoqasContext context, int customerId)
+        {
+            var customer = context.Customers.FirstOrDefault(u => u.Id == customerId);
+            if (customer == null)
+            {
+                return controller.BadRequest("There is no such customer with this id!");
+            }
+
+            return await EmailService.SendEmail(controller, context, customer.Email, 2);
         }
 
 
