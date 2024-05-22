@@ -34,7 +34,7 @@ app.Run();
 // [done] browser token
 // [done] send email from moqas -> SendVerificationEmail method in CustomerRegisterService class
 // send email from moqas whenever a new chat has started
-// send email from moqas for reset password
+// [done] send email from moqas for reset password
 // [done] receive site address while sign up
 // [done] add getUser api & Service
 // add bought package expire date
