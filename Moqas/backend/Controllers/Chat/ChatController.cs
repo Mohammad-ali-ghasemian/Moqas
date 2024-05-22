@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Moqas.Model.Authentication;
-using Moqas.Model.Chat;
+﻿using Microsoft.AspNetCore.Mvc;
 using Moqas.Model.Data;
-using Moqas.Service.Authentication;
 using Moqas.Service.Chat;
 
 namespace Moqas.Controllers.Chat

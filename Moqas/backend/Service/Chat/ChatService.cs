@@ -112,7 +112,7 @@ namespace Moqas.Service.Chat
                 await context.SaveChangesAsync();
             }
             catch (ObjectDisposedException ex) { }
-            return controller.Ok("New Chat Inserted!");
+            return controller.Ok(newChat.Id);
         }
 
 
