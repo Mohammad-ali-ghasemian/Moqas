@@ -57,16 +57,15 @@ namespace Moqas.Controllers.Authentication
         {
             return await EmailService.SendEmail(this, _context, email, 1);
         }
-
-
-
-
-
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword(ResetPasswordRequest request)
         {
             return await ResetPasswordService.ResetPasswordProcess(this, _context, request);
         }
+
+
+
+
 
         [HttpGet("get-customer")]
         public async Task<IActionResult> GetCustomer(bool token0Email1, string tokenEmail)
