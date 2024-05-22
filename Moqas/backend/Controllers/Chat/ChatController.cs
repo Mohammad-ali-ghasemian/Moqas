@@ -54,6 +54,12 @@ namespace Moqas.Controllers.Chat
             return await ChatService.StartChat(this, _context, customerId, username);
         }
 
+        [HttpPost("email-new-chat")]
+        public async Task<IActionResult> EmailNewChat(int customerId)
+        {
+            return await ChatService.EmailNewChat(this, _context, customerId);
+        }
+
         [HttpPut("end-chat")]
         public async Task<IActionResult> EndChat(int chatId)
         {
