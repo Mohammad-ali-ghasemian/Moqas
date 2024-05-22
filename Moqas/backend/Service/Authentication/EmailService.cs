@@ -16,12 +16,16 @@ namespace Moqas.Service.Authentication
             switch (emailType)
             {
                 case 0:
-                    //verificationToken
+                    //Verification Token
                     reason = "activation";
                     try
                     {
                         token = context.Customers.FirstOrDefault(u => u.Email == Email).VerificationToken;
                     }catch(Exception ex) { return controller.BadRequest("There is no such Email or the email you provided has no Verification Token!"); }
+                    break;
+
+                case 1:
+                    //Forgot Password Token
                     break;
             }
             var email = new MimeMessage();
