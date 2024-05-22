@@ -55,9 +55,9 @@ namespace Moqas.Service.Profile
 
 
 
-        public static async Task<IActionResult> UpdatePassword(ControllerBase controller, MoqasContext context, int id, string password)
+        public static async Task<IActionResult> UpdatePassword(ControllerBase controller, MoqasContext context, int customerId, string password)
         {
-            var customer = context.Customers.FirstOrDefault(u => u.Id == id);
+            var customer = context.Customers.FirstOrDefault(u => u.Id == customerId);
 
             CustomerRegisterService.CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
             customer.PasswordHash = passwordHash;

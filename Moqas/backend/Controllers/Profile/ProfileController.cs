@@ -43,9 +43,9 @@ namespace Moqas.Controllers.Profile
         }
 
         [HttpPut("profile-update-password")]
-        public async Task<IActionResult> ProfileUpdatePassword(int id, string newPassword)
+        public async Task<IActionResult> ProfileUpdatePassword(int customerId, string newPassword)
         {
-            return await ProfileService.UpdatePassword(this, _context, id, newPassword);
+            return await ProfileService.UpdatePassword(this, _context, customerId, newPassword);
         }
     }
 }
