@@ -60,5 +60,38 @@ namespace Moqas.Service.Authentication
 
             return controller.Ok("Email sent succesfully!");
         }
+
+
+
+
+
+        public async static Task<IActionResult> SendNewToken(ControllerBase controller, MoqasContext context, int customerId, string newEmail)
+        {
+            string? token = context.Customers.FirstOrDefault(u => u.Id == customerId).VerificationToken;
+            if (token == null)
+            {
+                return controller.BadRequest("There is no such Customer ID or the ID you provided has no Verification Token!");
+            }
+
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("MoqasSupport@moqas-chat.ir"));
+            email.To.Add(MailboxAddress.Parse(newEmail));
+            email.Subject = "Do Not Reply";
+            email.Body = new TextPart(TextFormat.Html) { Text = $"Your new verification code is :<br/><b>{token}</b>" };
+
+            using var smtp = new SmtpClient();
+            {
+                try
+                {
+                    smtp.Connect("webmail.moqas-chat.ir", 587, false);
+                    smtp.Authenticate("MoqasSupport@moqas-chat.ir", "fF#90a54c");
+                    smtp.Send(email);
+                    smtp.Disconnect(true);
+                }
+                catch (Exception ex) { return controller.BadRequest("There was a problem in connecting or sending the mail!"); }
+            }
+
+            return controller.Ok("Email sent succesfully!");
+        }
     }
 }

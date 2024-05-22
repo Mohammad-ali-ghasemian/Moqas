@@ -34,15 +34,14 @@ namespace Moqas.Service.Profile
             context.Customers.Update(customer);
             context.SaveChanges();
 
-            // EmailService.SendVerificationEmail(email, customer.VerificationToken, "verification");
-            return controller.Ok("Verification Email Sent Successfully!");
+            return controller.Ok("New Verification Token Created Successfully!");
         }
 
 
 
-        public static async Task<IActionResult> VerifyRequestProcess(ControllerBase controller, MoqasContext context, string token, string email)
+        public static async Task<IActionResult> VerifyRequestProcess(ControllerBase controller, MoqasContext context, string verificationToken, string email)
         {
-            var customer = context.Customers.FirstOrDefault(u => u.VerificationToken == token);
+            var customer = context.Customers.FirstOrDefault(u => u.VerificationToken == verificationToken);
             if (customer == null)
             {
                 return controller.BadRequest("Invalid Token!");
