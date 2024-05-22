@@ -12,7 +12,7 @@ namespace Moqas.Service.Authentication
         public async static Task<IActionResult> SendEmail(ControllerBase controller, MoqasContext context, string Email, byte emailType)
         {
             string reason = string.Empty;
-            string token = string.Empty;
+            string? token = string.Empty;
             switch (emailType)
             {
                 case 0:
