@@ -15,14 +15,18 @@ namespace Moqas.Controllers.Authentication
             _context = context;
         }
 
+
+
+
+
         [HttpPost("register")]
         public async Task<IActionResult> Register(CustomerRegister request)
         {
             return await CustomerRegisterService.RegisterRequestProcess(this, _context, request);
         }
 
-        [HttpPost("send-verification-token")]
-        public async Task<IActionResult> SendVerificationToken(string email)
+        [HttpPost("email-verification-token")]
+        public async Task<IActionResult> EmailVerificationToken(string email)
         {
             return await EmailService.SendEmail(this, _context, email, 0);
         }
@@ -39,11 +43,24 @@ namespace Moqas.Controllers.Authentication
             return await CustomerLoginService.LoginRequestProcess(this, _context, request);
         }
 
-        [HttpPost("send-forgotPassword-token")]
-        public async Task<IActionResult> SendForgotPasswordToken(string email)
+
+
+
+        [HttpPost("create-forgotPassword-token")]
+        public async Task<IActionResult> CreateForgotPasswordToken(string email)
+        {
+            return await ForgotPasswordService.CreateForgotPasswordToken(this, _context, email);
+        }
+
+        [HttpPost("email-forgotPassword-token")]
+        public async Task<IActionResult> EmailForgotPasswordToken(string email)
         {
             return await EmailService.SendEmail(this, _context, email, 1);
         }
+
+
+
+
 
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword(ResetPasswordRequest request)

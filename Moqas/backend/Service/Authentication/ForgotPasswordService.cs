@@ -7,7 +7,7 @@ namespace Moqas.Service.Authentication
 {
     public class ForgotPasswordService
     {
-        public static async Task<IActionResult> ForgotPasswordEmail(ControllerBase controller, MoqasContext context, string email)
+        public static async Task<IActionResult> CreateForgotPasswordToken(ControllerBase controller, MoqasContext context, string email)
         {
             var customer = await context.Customers.FirstOrDefaultAsync(u => u.Email == email);
             if (customer == null)
@@ -23,9 +23,8 @@ namespace Moqas.Service.Authentication
                 await context.SaveChangesAsync();
             }
             catch (ObjectDisposedException ex) { }
-            // EmailService.SendVerificationEmail(email, customer.PasswordResetToken, "Reset Password");
 
-            return controller.Ok("Reset Password Token Sent!");
+            return controller.Ok("Forgot Password Token Created Sucessfully!");
         }
     }
 }

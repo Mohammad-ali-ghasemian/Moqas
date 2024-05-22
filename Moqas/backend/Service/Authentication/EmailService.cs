@@ -29,24 +29,11 @@ namespace Moqas.Service.Authentication
                 case 1:
                     //Forgot Password Token
                     reason = "forgot password";
-
-                    var customer = await context.Customers.FirstOrDefaultAsync(u => u.Email == Email);
-                    if (customer == null)
+                    token = context.Customers.FirstOrDefault(u => u.Email == Email).PasswordResetToken;
+                    if (token == null)
                     {
-                        return controller.BadRequest("Customer does not exists!");
+                        return controller.BadRequest("There is no such Email or the email you provided has no Password Reset Token!");
                     }
-
-                    token = CustomerRegisterService.CreateToken(4);
-                    customer.PasswordResetToken = token;
-                    customer.ResetTokenExpires = DateTime.Now.AddHours(1);
-
-                    context.Customers.Update(customer);
-                    try
-                    {
-                        await context.SaveChangesAsync();
-                    }
-                    catch (ObjectDisposedException ex) { }
-
                     break;
             }
             var email = new MimeMessage();
