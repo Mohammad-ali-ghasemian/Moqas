@@ -21,7 +21,7 @@ namespace Moqas.Controllers.Authentication
             return await CustomerRegisterService.RegisterRequestProcess(this, _context, request);
         }
 
-        [HttpPost("sendVerificationToken")]
+        [HttpPost("send-verification-token")]
         public async Task<IActionResult> SendVerificationToken(string email)
         {
             return await EmailService.SendEmail(this, _context, email, 0);
@@ -42,7 +42,7 @@ namespace Moqas.Controllers.Authentication
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword(string email)
         {
-            return await ForgotPasswordService.ForgotPasswordEmail(this, _context, email);
+            return await EmailService.SendEmail(this, _context, email, 1);
         }
 
         [HttpPost("reset-password")]
