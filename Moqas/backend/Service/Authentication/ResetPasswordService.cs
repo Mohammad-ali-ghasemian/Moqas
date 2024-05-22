@@ -9,7 +9,7 @@ namespace Moqas.Service.Authentication
     {
         public static async Task<IActionResult> ResetPasswordProcess(ControllerBase controller, MoqasContext context, ResetPasswordRequest request)
         {
-            var customer = await context.Customers.FirstOrDefaultAsync(u => u.PasswordResetToken == request.Token);
+            var customer = await context.Customers.FirstOrDefaultAsync(u => u.PasswordResetToken == request.ResetPasswordToken);
             if (customer == null || customer.ResetTokenExpires < DateTime.Now)
             {
                 return controller.BadRequest("Invalid Token!");

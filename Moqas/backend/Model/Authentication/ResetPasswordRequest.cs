@@ -5,7 +5,7 @@ namespace Moqas.Model.Authentication
     public class ResetPasswordRequest
     {
         [Required]
-        public string Token { get; set; } = string.Empty;
+        public string ResetPasswordToken { get; set; } = string.Empty;
         [Required, MinLength(6)]
         public string Password { get; set; } = string.Empty;
         [Required, Compare("Password")]

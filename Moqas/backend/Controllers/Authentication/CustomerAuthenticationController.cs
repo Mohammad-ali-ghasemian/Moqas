@@ -32,9 +32,9 @@ namespace Moqas.Controllers.Authentication
         }
 
         [HttpPost("verify")]
-        public async Task<IActionResult> Verify(string token)
+        public async Task<IActionResult> Verify(string verificationToken)
         {
-            return await CustomerVerifyService.VerifyRequestProcess(this, _context, token);
+            return await CustomerVerifyService.VerifyRequestProcess(this, _context, verificationToken);
         }
 
         [HttpPost("login")]
@@ -68,15 +68,15 @@ namespace Moqas.Controllers.Authentication
 
 
         [HttpGet("get-customer")]
-        public async Task<IActionResult> GetCustomer(bool token0Email1, string tokenEmail)
+        public async Task<IActionResult> GetCustomer(bool BrowserToken0Email1, string tokenEmail)
         {
-            return await CustomerInfoService.GetCustomer(this, _context, token0Email1, tokenEmail);
+            return await CustomerInfoService.GetCustomer(this, _context, BrowserToken0Email1, tokenEmail);
         }
 
         [HttpPut("logout")]
-        public async Task<IActionResult> Logout(string token)
+        public async Task<IActionResult> Logout(string browserToken)
         {
-            return await CustomerLogoutService.LogoutRequestProcess(this, _context, token);
+            return await CustomerLogoutService.LogoutRequestProcess(this, _context, browserToken);
         }
 
     }
