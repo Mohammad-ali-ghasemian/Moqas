@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Moqas.Model.Data;
 using Moqas.Service.Authentication;
 
@@ -36,6 +35,9 @@ namespace Moqas.Controllers.Authentication
         [HttpPut("extend-browser-token-expire-datetime")]
         public async Task<IActionResult> ExtendBrowserTokenExpireDateTime(int customerId, int extendDays)
         {
+            //by default, 'extendDays' should be '4'
+            //at max, browser token expire will be 4 days
+            //if enter other numbers like 2, the expire will change to 2 even if it has already 3 days left
             return await WebTokenService.ExtendBrowserTokenExpireDateTime(this, _context, customerId, extendDays);
         }
 
