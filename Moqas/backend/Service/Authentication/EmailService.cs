@@ -18,7 +18,7 @@ namespace Moqas.Service.Authentication
             {
                 case 0:
                     //Verification Token
-                    reason = "activation";
+                    reason = "Your activation code is :";
                     token = context.Customers.FirstOrDefault(u => u.Email == Email).VerificationToken;
                     if (token == null)
                     {
@@ -28,19 +28,24 @@ namespace Moqas.Service.Authentication
 
                 case 1:
                     //Forgot Password Token
-                    reason = "forgot password";
+                    reason = "Your forgot password code is :";
                     token = context.Customers.FirstOrDefault(u => u.Email == Email).PasswordResetToken;
                     if (token == null)
                     {
                         return controller.BadRequest("There is no such Email or the email you provided has no Password Reset Token!");
                     }
                     break;
+
+                case 2:
+                    //Notify New Chat
+                    reason = "The New Chat Has Started";
+                    break;
             }
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("MoqasSupport@moqas-chat.ir"));
             email.To.Add(MailboxAddress.Parse(Email));
             email.Subject = "Do Not Reply";
-            email.Body = new TextPart(TextFormat.Html) { Text = $"Your {reason} code is :<br/><b>{token}</b>" };
+            email.Body = new TextPart(TextFormat.Html) { Text = $"{reason}<br/><b>{token}</b>" };
 
             using var smtp = new SmtpClient();
             {
