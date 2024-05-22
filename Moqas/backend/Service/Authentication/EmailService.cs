@@ -4,6 +4,7 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Mvc;
 using Moqas.Model.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Moqas.Service.Authentication
 {
@@ -27,6 +28,24 @@ namespace Moqas.Service.Authentication
 
                 case 1:
                     //Forgot Password Token
+                    reason = "forgot password";
+
+                    var customer = await context.Customers.FirstOrDefaultAsync(u => u.Email == Email);
+                    if (customer == null)
+                    {
+                        return controller.BadRequest("Customer does not exists!");
+                    }
+
+                    token = CustomerRegisterService.CreateToken(4);
+                    customer.PasswordResetToken = token;
+                    customer.ResetTokenExpires = DateTime.Now.AddHours(1);
+
+                    context.Customers.Update(customer);
+                    try
+                    {
+                        await context.SaveChangesAsync();
+                    }
+                    catch (ObjectDisposedException ex) { }
 
                     break;
             }
