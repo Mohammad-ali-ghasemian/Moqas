@@ -32,42 +32,14 @@ namespace Moqas.Service.Authentication
 
             using var smtp = new SmtpClient();
             {
-                //smtp.Connect("webmail.moqas-chat.ir", 587, SecureSocketOptions.StartTls);
-
-                //smtp.Connect("webmail.moqas-chat.ir", 25, SecureSocketOptions.StartTls);
-                smtp.Connect("webmail.moqas-chat.ir", 587, false);
-                smtp.Authenticate("MoqasSupport@moqas-chat.ir", "fF#90a54c");
-                smtp.Send(email);
-                smtp.Disconnect(true);
-                
+                try
+                {
+                    smtp.Connect("webmail.moqas-chat.ir", 587, false);
+                    smtp.Authenticate("MoqasSupport@moqas-chat.ir", "fF#90a54c");
+                    smtp.Send(email);
+                    smtp.Disconnect(true);
+                }catch(Exception ex) { return controller.BadRequest("There was a problem in connecting or sending the mail!"); }
             }
-
-            /*var client = new SmtpClient("smtp.yourserver.com")
-            {
-                Port = 25, // Use the port for SMTP without encryption
-                EnableSsl = false, // Disable SSL/TLS
-                Credentials = new NetworkCredential("yourusername", "yourpassword")
-            };
-
-            var mailMessage = new MailMessage
-            {
-                From = new MailAddress("you@yourdomain.com"),
-                Subject = "Test Email",
-                Body = "This is a test email",
-                IsBodyHtml = true,
-            };
-            mailMessage.To.Add("recipient@theirdomain.com");
-
-            try
-            {
-                client.Send(mailMessage);
-                Console.WriteLine("Email sent successfully.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error sending email: " + ex.Message);
-            }*/
-
 
             return controller.Ok("Email sent succesfully!");
         }
