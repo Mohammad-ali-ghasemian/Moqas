@@ -37,7 +37,10 @@ app.Run();
 // [done] send email from moqas for reset password
 // [done] receive site address while sign up
 // [done] add getUser api & Service
+// user pass for config
 // add bought package expire date
-// handle zarrin pall
+// startChat: send user pass username
+// buy me a coffee
 // host handle
 // socket (optional)
+
