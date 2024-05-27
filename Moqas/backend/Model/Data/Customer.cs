@@ -21,6 +21,7 @@ namespace Moqas.Model.Data
         public byte[] ConfigPasswordHash { get; set; } = new byte[32];
         public byte[] ConfigPasswordSalt { get; set; } = new byte[32];
         public DateTime? ConfigCreatedAt { get; set; }
+        public DateTime? ConfigExpires { get; set; }
 
         //navigation properties
         public List<Chat> Chat { get; set; }
