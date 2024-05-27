@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Moqas.Model.Authentication;
 using Moqas.Model.Data;
 using Moqas.Service.Chat;
 
@@ -46,9 +45,9 @@ namespace Moqas.Controllers.Chat
         }
 
         [HttpPost("start-chat")]
-        public async Task<IActionResult> StartChat(CustomerLogin request, string username)
+        public async Task<IActionResult> StartChat(string configUsername, string configPassword, string username)
         {
-            return await ChatService.StartChat(this, _context, request, username);
+            return await ChatService.StartChat(this, _context, configUsername, configPassword, username);
         }
 
         [HttpPost("email-new-chat")]
