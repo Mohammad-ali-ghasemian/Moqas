@@ -9,6 +9,10 @@ namespace Moqas.Service.Chat
     {
         public async static Task<IActionResult> ConfigRegister(ControllerBase controller, MoqasContext context, ConfigRegister request)
         {
+            if (context.Customers.FirstOrDefault(u => u.ConfigUsername == request.Username) != null)
+            {
+                return controller.BadRequest("The Username you have chosen for config is already exists!");
+            }
             var customer = context.Customers.FirstOrDefault(u => u.BrowserToken == request.BrowserToken);
             if (customer == null)
             {
