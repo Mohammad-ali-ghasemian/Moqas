@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Moqas.Model.Data;
 
 namespace Moqas.Controllers.Chat
 {
@@ -7,5 +8,12 @@ namespace Moqas.Controllers.Chat
     [ApiController]
     public class ConfigController : ControllerBase
     {
+        MoqasContext _context;
+        public ConfigController(MoqasContext context)
+        {
+            _context = context;
+        }
+
+
     }
 }
