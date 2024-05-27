@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Moqas.Model.Authentication;
 using Moqas.Model.Chat;
 using Moqas.Model.Data;
 using Moqas.Service.Authentication;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace Moqas.Service.Chat
 {
@@ -98,13 +101,30 @@ namespace Moqas.Service.Chat
 
 
 
-        public async static Task<IActionResult> StartChat(ControllerBase controller, MoqasContext context, int customerId, string username)
+        public async static Task<IActionResult> StartChat(ControllerBase controller, MoqasContext context, string configUsername, string configPassword, string username)
         {
+            var customer = await context.Customers.FirstOrDefaultAsync(u => u.ConfigUsername == configUsername);
+
+            if (customer == null)
+            {
+                return controller.BadRequest("Config Not Found!");
+            }
+
+            if (!CustomerLoginService.VerifyPasswordHash(configPassword, customer.ConfigPasswordHash, customer.ConfigPasswordSalt))
+            {
+                return controller.BadRequest("Password Is Incorrect!");
+            }
+
+            if (customer.VerifiedAt == null)
+            {
+                return controller.BadRequest("Customer Not Verified!");
+            }
+
             var newChat = new Model.Data.Chat
             {
                 UserName = username,
                 CreatedAt = DateTime.Now,
-                CustomerId = customerId
+                CustomerId = customer.Id
             };
             context.Chats.Add(newChat);
             try
