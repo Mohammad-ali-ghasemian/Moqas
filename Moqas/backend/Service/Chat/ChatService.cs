@@ -115,10 +115,6 @@ namespace Moqas.Service.Chat
                 return controller.BadRequest("Password Is Incorrect!");
             }
 
-            if (customer.VerifiedAt == null)
-            {
-                return controller.BadRequest("Customer Not Verified!");
-            }
 
             var newChat = new Model.Data.Chat
             {

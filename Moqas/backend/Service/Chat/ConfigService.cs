@@ -22,6 +22,10 @@ namespace Moqas.Service.Chat
             {
                 return controller.BadRequest("Confirmed Password Not Equall to the Password!");
             }
+            if (customer.VerifiedAt == null)
+            {
+                return controller.BadRequest("Customer Not Verified!");
+            }
             if (customer.ConfigExpires > DateTime.Now)
             {
                 return controller.BadRequest("Your Last Config has not Expired Yet!");
