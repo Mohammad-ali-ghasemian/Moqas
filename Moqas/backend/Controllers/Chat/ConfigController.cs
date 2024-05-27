@@ -22,9 +22,9 @@ namespace Moqas.Controllers.Chat
         }
 
         [HttpGet("get-config")]
-        public async Task<IActionResult> GetConfig(ConfigRegister request)
+        public async Task<IActionResult> GetConfig(string browserToken)
         {
-            return await ConfigService.GetConfig(this, _context, request);
+            return await ConfigService.GetConfig(this, _context, browserToken);
         }
     }
 }
