@@ -2,23 +2,30 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Moqas.Service.Authentication;
+using Moqas.Model.Profile;
 
 namespace Moqas.Service.Profile
 {
     public class ProfileService
     {
-
+        private static Model.Profile.Profile profile = new Model.Profile.Profile();
 
         public async static Task<Model.Profile.Profile> GetProfile(MoqasContext context, int customerId)
         {
             var customer = await context.Customers.FirstOrDefaultAsync(u => u.Id == customerId);
 
-            var profile = new Model.Profile.Profile
-            {
-                CustomerId = customerId,
-                Email = customer.Email,
-                VerifiedAt = customer.VerifiedAt
-            };
+            profile.Id = customerId;
+            profile.Email = customer.Email;
+            profile.WebsiteLink = customer.WebsiteLink;
+            profile.VerificationToken = customer.VerificationToken;
+            profile.VerifiedAt = customer.VerifiedAt;
+            profile.PasswordResetToken = customer.PasswordResetToken;
+            profile.ResetTokenExpires = customer.ResetTokenExpires;
+            profile.BrowserToken = customer.BrowserToken;
+            profile.BrowserTokenExpires = customer.BrowserTokenExpires;
+            profile.ConfigUsername = customer.ConfigUsername;
+            profile.ConfigCreatedAt = customer.ConfigCreatedAt;
+            profile.ConfigExpires = customer.ConfigExpires;
             return profile;
         }
 
