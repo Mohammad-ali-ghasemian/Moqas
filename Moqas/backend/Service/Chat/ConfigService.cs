@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Moqas.Model.Authentication;
+using Moqas.Model.Chat;
 using Moqas.Model.Data;
 using Moqas.Service.Authentication;
 
@@ -36,14 +36,23 @@ namespace Moqas.Service.Chat
             return controller.Ok(customer.Id);
         }
 
-        /*public async static Task<IActionResult> GetConfig(ControllerBase controller, MoqasContext context, string browserToken)
+        public async static Task<IActionResult> GetConfig(ControllerBase controller, MoqasContext context, string browserToken)
         {
             var customer = context.Customers.FirstOrDefault(u => u.BrowserToken == browserToken);
             if (customer == null)
             {
                 return controller.BadRequest("There is no such Browser Token!");
             }
-
-        }*/
+            return controller.Ok(new ConfigData
+            {
+                Id = customer.Id,
+                Email = customer.Email,
+                WebsiteLink = customer.WebsiteLink,
+                BrowserToken = customer.BrowserToken,
+                ConfigUsername = customer.ConfigUsername,
+                ConfigCreatedAt = customer.ConfigCreatedAt,
+                ConfigExpires = customer.ConfigExpires,
+            });
+        }
     }
 }
