@@ -24,6 +24,14 @@ namespace Moqas.Service.Chat
             customer.PasswordHash = passwordHash;
             customer.PasswordSalt = passwordSalt;
 
+            context.Customers.Update(customer);
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (ObjectDisposedException ex) { }
+
+            return controller.Ok(customer.Id);
         }
     }
 }
