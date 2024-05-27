@@ -8,7 +8,11 @@ namespace Moqas.Service.Chat
     {
         public async static Task<IActionResult> ConfigRegister(ControllerBase controller, MoqasContext context, ConfigRegister request)
         {
-
+            var customer = context.Customers.FirstOrDefault(u => u.BrowserToken == request.BrowserToken);
+            if (customer == null)
+            {
+                return controller.BadRequest("There is no such Browser Token!");
+            }
         }
     }
 }
