@@ -17,6 +17,10 @@ namespace Moqas.Model.Data
         public string? BrowserToken { get; set; }
         public DateTime? BrowserTokenExpires { get; set; }
 
+        public string ConfigUsername { get; set; } = string.Empty;
+        public byte[] ConfigPasswordHash { get; set; } = new byte[32];
+        public byte[] ConfigPasswordSalt { get; set; } = new byte[32];
+
         //navigation properties
         public List<Chat> Chat { get; set; }
     }
