@@ -23,6 +23,8 @@ namespace Moqas.Service.Chat
             customer.ConfigUsername = request.Username;
             customer.PasswordHash = passwordHash;
             customer.PasswordSalt = passwordSalt;
+            customer.ConfigCreatedAt = DateTime.Now;
+            customer.ConfigExpires = DateTime.Now.AddDays(30);
 
             context.Customers.Update(customer);
             try
@@ -33,5 +35,15 @@ namespace Moqas.Service.Chat
 
             return controller.Ok(customer.Id);
         }
+
+        /*public async static Task<IActionResult> GetConfig(ControllerBase controller, MoqasContext context, string browserToken)
+        {
+            var customer = context.Customers.FirstOrDefault(u => u.BrowserToken == browserToken);
+            if (customer == null)
+            {
+                return controller.BadRequest("There is no such Browser Token!");
+            }
+
+        }*/
     }
 }
