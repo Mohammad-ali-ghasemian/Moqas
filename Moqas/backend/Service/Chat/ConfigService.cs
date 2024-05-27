@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moqas.Model.Authentication;
 using Moqas.Model.Data;
+using Moqas.Service.Authentication;
 
 namespace Moqas.Service.Chat
 {
@@ -13,6 +14,16 @@ namespace Moqas.Service.Chat
             {
                 return controller.BadRequest("There is no such Browser Token!");
             }
+            if (!request.Password.Equals(request.ConfirmPassword))
+            {
+                return controller.BadRequest("Confirmed Password Not Equall to the Password!");
+            }
+
+            CustomerRegisterService.CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+            customer.ConfigUsername = request.Username;
+            customer.PasswordHash = passwordHash;
+            customer.PasswordSalt = passwordSalt;
+
         }
     }
 }
