@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Moqas.Model.Authentication;
 using Moqas.Model.Data;
-using Moqas.Service.Authentication;
 using Moqas.Service.Chat;
 
 namespace Moqas.Controllers.Chat
@@ -21,6 +19,12 @@ namespace Moqas.Controllers.Chat
         public async Task<IActionResult> ConfigRegister(ConfigRegister request)
         {
             return await ConfigService.ConfigRegister(this, _context, request);
+        }
+
+        [HttpGet("get-config")]
+        public async Task<IActionResult> GetConfig(ConfigRegister request)
+        {
+            return await ConfigService.GetConfig(this, _context, request);
         }
     }
 }
