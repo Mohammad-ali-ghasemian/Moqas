@@ -20,6 +20,7 @@ namespace Moqas.Model.Data
         public string ConfigUsername { get; set; } = string.Empty;
         public byte[] ConfigPasswordHash { get; set; } = new byte[32];
         public byte[] ConfigPasswordSalt { get; set; } = new byte[32];
+        public DateTime? ConfigCreatedAt { get; set; }
 
         //navigation properties
         public List<Chat> Chat { get; set; }
