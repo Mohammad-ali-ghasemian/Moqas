@@ -22,6 +22,10 @@ namespace Moqas.Service.Chat
             {
                 return controller.BadRequest("Confirmed Password Not Equall to the Password!");
             }
+            if (customer.ConfigExpires > DateTime.Now)
+            {
+                return controller.BadRequest("Your Last Config has not Expired Yet!");
+            }
 
             CustomerRegisterService.CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
             customer.ConfigUsername = request.Username;
