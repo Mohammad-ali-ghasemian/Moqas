@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Moqas.Model.Authentication;
+using Moqas.Model.Chat;
 using Moqas.Model.Data;
 using Moqas.Service.Chat;
 

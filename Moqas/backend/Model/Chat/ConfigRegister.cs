@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Moqas.Model.Authentication
+namespace Moqas.Model.Chat
 {
     public class ConfigRegister
     {
