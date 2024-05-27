@@ -45,9 +45,9 @@ namespace Moqas.Controllers.Chat
         }
 
         [HttpPost("start-chat")]
-        public async Task<IActionResult> StartChat(int customerId, string username)
+        public async Task<IActionResult> StartChat(string configUsername, string configPassword, string username)
         {
-            return await ChatService.StartChat(this, _context, customerId, username);
+            return await ChatService.StartChat(this, _context, configUsername, configPassword, username);
         }
 
         [HttpPost("email-new-chat")]
