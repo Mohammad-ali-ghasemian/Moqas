@@ -15,7 +15,7 @@ namespace Moqas.Controllers.Chat
             _context = context;
         }
 
-        [HttpGet("config-register")]
+        [HttpPost("config-register")]
         public async Task<IActionResult> ConfigRegister(ConfigRegister request)
         {
             return await ConfigService.ConfigRegister(this, _context, request);
