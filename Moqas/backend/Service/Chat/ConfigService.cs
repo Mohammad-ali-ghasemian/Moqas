@@ -25,8 +25,8 @@ namespace Moqas.Service.Chat
 
             CustomerRegisterService.CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
             customer.ConfigUsername = request.Username;
-            customer.PasswordHash = passwordHash;
-            customer.PasswordSalt = passwordSalt;
+            customer.ConfigPasswordHash = passwordHash;
+            customer.ConfigPasswordSalt = passwordSalt;
             customer.ConfigCreatedAt = DateTime.Now;
             customer.ConfigExpires = DateTime.Now.AddDays(30);
 
