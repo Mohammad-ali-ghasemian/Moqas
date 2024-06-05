@@ -7,9 +7,10 @@ builder.Services.AddCors(options => {
     options.AddPolicy("AllowLocalhost3000",
         builder =>
         {
-            builder.WithOrigins("http://localhost:3000")
-            .AllowAnyMethod()
-            .AllowAnyHeader();
+            builder.WithOrigins("http://localhost:3000", "https://localhost:3000")
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                   .AllowCredentials();
         });
 });
 
@@ -28,7 +29,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//https://www.c-sharpcorner.com/article/handling-cors-cross-origin-resource-sharing-in-asp-net-core-web-api/
 app.UseCors("AllowLocalhost3000");
 
 app.UseHttpsRedirection();
@@ -55,4 +55,3 @@ app.Run();
 // buy me a coffee
 // host handle
 // socket (optional)
-
