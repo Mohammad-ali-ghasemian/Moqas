@@ -50,7 +50,7 @@ namespace Moqas.Service.Authentication
             }
             catch (ObjectDisposedException ex) { }
 
-            return controller.Ok($"Welcome Back, {customer.Email}");
+            return controller.Ok(customer.Id + " " + customer.BrowserToken);
         }
     }
 }
