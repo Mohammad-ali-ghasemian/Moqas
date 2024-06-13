@@ -21,5 +21,11 @@ namespace Moqas.Controllers.Chat
         {
             return await CustomerSettingsService.InsertSetting(this, _context, settings);
         }
+
+        [HttpGet("get-setting")]
+        public async Task<IActionResult> GetSetting(int customerId, string type)
+        {
+            return await CustomerSettingsService.GetSetting(this, _context, customerId, type);
+        }
     }
 }
