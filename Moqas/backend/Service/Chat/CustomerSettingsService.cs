@@ -39,5 +39,32 @@ namespace Moqas.Service.Chat
             catch (ObjectDisposedException ex) { }
             return controller.Ok("Setting Inserted Succesfuly");
         }
+
+
+        public async static Task<IActionResult> GetSetting(ControllerBase controller, MoqasContext context, int customerId, string type)
+        {
+            if (context.Customers.FirstOrDefault(u => u.Id == customerId) == null)
+            {
+                return controller.BadRequest("There is no such customer id!");
+            }
+            if (!Enum.IsDefined(typeof(TypeStyle), type))
+            {
+                return controller.BadRequest("Invalid Type");
+            }
+
+            var setting = context.CustomerSettings.Where(u => u.CustomerId == customerId && u.Type == type).FirstOrDefault();
+            if (setting == null)
+            {
+                return controller.BadRequest("There is no such customer with this type!");
+            }
+            return controller.Ok(new CustomerSettings
+            {
+                Id = setting.Id,
+                Type = setting.Type,
+                Key = setting.Key,
+                Value = setting.Value,
+                CustomerId = setting.CustomerId,
+            });
+        }
     }
 }
