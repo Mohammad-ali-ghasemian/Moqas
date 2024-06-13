@@ -25,5 +25,6 @@ namespace Moqas.Model.Data
 
         //navigation properties
         public List<Chat> Chat { get; set; }
+        public List<CustomerSettings> CustomerSettings { get; set; }
     }
 }
