@@ -17,7 +17,7 @@ namespace Moqas.Controllers.Chat
         }
 
         [HttpPost("insert-setting")]
-        public async Task<IActionResult> InsertSetting(CustomerSettings settings)
+        public async Task<IActionResult> InsertSetting(GetCustomerSettings settings)
         {
             return await CustomerSettingsService.InsertSetting(this, _context, settings);
         }
