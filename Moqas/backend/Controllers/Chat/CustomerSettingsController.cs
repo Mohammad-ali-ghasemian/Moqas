@@ -27,5 +27,11 @@ namespace Moqas.Controllers.Chat
         {
             return await CustomerSettingsService.GetSetting(this, _context, customerId, type);
         }
+
+        [HttpPut("update-type")]
+        public async Task<IActionResult> UpdateType(int settingId, string newType)
+        {
+            return await CustomerSettingsService.UpdateType(this, _context, settingId, newType);
+        }
     }
 }

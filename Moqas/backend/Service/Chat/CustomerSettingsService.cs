@@ -66,5 +66,23 @@ namespace Moqas.Service.Chat
                 CustomerId = setting.CustomerId,
             });
         }
+
+        public async static Task<IActionResult> UpdateType(ControllerBase controller, MoqasContext context, int id, string type)
+        {
+            var setting = context.CustomerSettings.FirstOrDefault(u => u.Id == id);
+            if (setting == null)
+            {
+                return controller.BadRequest("There is no such id");
+            }
+            if (!Enum.IsDefined(typeof(TypeStyle), type))
+            {
+                return controller.BadRequest("Invalid Type");
+            }
+
+            setting.Type = type;
+            context.CustomerSettings.Update(setting);
+            context.SaveChanges();
+            return controller.Ok("New Type Apllied!");
+        }
     }
 }
