@@ -33,5 +33,11 @@ namespace Moqas.Controllers.Chat
         {
             return await CustomerSettingsService.UpdateType(this, _context, settingId, newType);
         }
+
+        [HttpPut("update-key-value")]
+        public async Task<IActionResult> UpdateKeyValue(int settingId, string newKey, string newValue)
+        {
+            return await CustomerSettingsService.UpdateKeyValue(this, _context, settingId, newKey, newValue);
+        }
     }
 }

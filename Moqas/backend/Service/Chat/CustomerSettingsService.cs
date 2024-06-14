@@ -84,5 +84,21 @@ namespace Moqas.Service.Chat
             context.SaveChanges();
             return controller.Ok("New Type Apllied!");
         }
+
+        public async static Task<IActionResult> UpdateKeyValue(ControllerBase controller, MoqasContext context, int id, string key, string value)
+        {
+            var setting = context.CustomerSettings.FirstOrDefault(u => u.Id == id);
+            if (setting == null)
+            {
+                return controller.BadRequest("There is no such id");
+            }
+
+            setting.Key = key;
+            setting.Value = value;
+            context.CustomerSettings.Update(setting);
+            context.SaveChanges();
+            return controller.Ok("New Key-Value Apllied!");
+        }
+        
     }
 }
