@@ -52,19 +52,25 @@ namespace Moqas.Service.Chat
                 return controller.BadRequest("Invalid Type");
             }
 
-            var setting = context.CustomerSettings.Where(u => u.CustomerId == customerId && u.Type == type).FirstOrDefault();
+            var setting = context.CustomerSettings.Where(u => u.CustomerId == customerId && u.Type == type).ToList();
             if (setting == null)
             {
                 return controller.BadRequest("There is no such customer with this type!");
             }
-            return controller.Ok(new CustomerSettings
+
+            CustomerSettings[] customerSettings = new CustomerSettings[setting.Count];
+            int i = 0;
+            foreach(CustomerSettings item in setting)
             {
-                Id = setting.Id,
-                Type = setting.Type,
-                Key = setting.Key,
-                Value = setting.Value,
-                CustomerId = setting.CustomerId,
-            });
+                customerSettings[i] = new CustomerSettings();
+                customerSettings[i].Id = item.Id;
+                customerSettings[i].Type = item.Type;
+                customerSettings[i].Key = item.Key;
+                customerSettings[i].Value = item.Value;
+                customerSettings[i].CustomerId = item.CustomerId;
+                ++i;
+            }
+            return controller.Ok(customerSettings);
         }
 
         public async static Task<IActionResult> UpdateType(ControllerBase controller, MoqasContext context, int id, string type)
