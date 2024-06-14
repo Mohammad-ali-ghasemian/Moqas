@@ -39,5 +39,11 @@ namespace Moqas.Controllers.Chat
         {
             return await CustomerSettingsService.UpdateKeyValue(this, _context, settingId, newKey, newValue);
         }
+
+        [HttpDelete("delete-setting")]
+        public async Task<IActionResult> DeleteSetting(int settingId)
+        {
+            return await CustomerSettingsService.DeleteSetting(this, _context, settingId);
+        }
     }
 }

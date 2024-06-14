@@ -99,6 +99,19 @@ namespace Moqas.Service.Chat
             context.SaveChanges();
             return controller.Ok("New Key-Value Apllied!");
         }
-        
+
+        public async static Task<IActionResult> DeleteSetting(ControllerBase controller, MoqasContext context, int id)
+        {
+            var setting = context.CustomerSettings.FirstOrDefault(u => u.Id == id);
+            if (setting == null)
+            {
+                return controller.BadRequest("There is no such id");
+            }
+
+            context.CustomerSettings.Remove(setting);
+            context.SaveChanges();
+            return controller.Ok("Setting Deleted!");
+        }
+
     }
 }
