@@ -35,9 +35,9 @@ namespace Moqas.Controllers.Chat
         }
 
         [HttpPut("update-key-value")]
-        public async Task<IActionResult> UpdateKeyValue(int settingId, string newKey, string newValue)
+        public async Task<IActionResult> UpdateKeyValue(int settingId, UpdateKeyValue newKeyValue)
         {
-            return await CustomerSettingsService.UpdateKeyValue(this, _context, settingId, newKey, newValue);
+            return await CustomerSettingsService.UpdateKeyValue(this, _context, settingId, newKeyValue);
         }
 
         [HttpDelete("delete-setting")]
