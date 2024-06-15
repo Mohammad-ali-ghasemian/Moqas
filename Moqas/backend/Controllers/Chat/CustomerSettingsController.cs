@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Moqas.Model.Chat;
 using Moqas.Model.Data;
+using Moqas.Model.Settings;
 using Moqas.Service.Chat;
 
 namespace Moqas.Controllers.Chat

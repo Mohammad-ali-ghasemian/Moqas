@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Moqas.Model.Chat;
 using Moqas.Model.Data;
+using Moqas.Model.Settings;
 using static Moqas.Model.Data.CustomerSettings;
 
 namespace Moqas.Service.Chat

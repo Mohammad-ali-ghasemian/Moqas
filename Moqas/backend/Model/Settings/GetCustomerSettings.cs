@@ -1,6 +1,6 @@
 ﻿using static Moqas.Model.Data.CustomerSettings;
 
-namespace Moqas.Model.Chat
+namespace Moqas.Model.Settings
 {
     public class GetCustomerSettings
     {
