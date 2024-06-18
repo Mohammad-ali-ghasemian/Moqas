@@ -69,10 +69,10 @@ namespace Moqas.Controllers.Chat
         }
 
 
-        /*[HttpGet("get-rates")]
+        [HttpGet("get-rates")]
         public async Task<IActionResult> GetRates(int customerId)
         {
             return await ChatService.GetRates(this, _context, customerId);
-        }*/
+        }
     }
 }

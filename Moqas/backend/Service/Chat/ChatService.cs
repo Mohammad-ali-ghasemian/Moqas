@@ -5,6 +5,7 @@ using Moqas.Model.Chat;
 using Moqas.Model.Data;
 using Moqas.Service.Authentication;
 using Org.BouncyCastle.Asn1.Ocsp;
+using System.Collections;
 
 namespace Moqas.Service.Chat
 {
@@ -190,22 +191,22 @@ namespace Moqas.Service.Chat
 
 
 
-        /*public async static Task<IActionResult> GetRates(ControllerBase controller, MoqasContext context, int customerId)
+        public async static Task<IActionResult> GetRates(ControllerBase controller, MoqasContext context, int customerId)
         {
-            var chat = context.Chats.FirstOrDefault(u => u.Id == customerId);
-            if (chat == null)
+            if (context.Chats.FirstOrDefault(u => u.CustomerId == customerId) == null)
             {
-                return controller.BadRequest("There is no such chat!");
+                return controller.BadRequest("This Customer has no Chat or this customer does not exist!");
             }
 
-            context.Chats.Update(chat);
-            try
+            return controller.Ok(new Rate
             {
-                await context.SaveChangesAsync();
-            }
-            catch (ObjectDisposedException ex) { }
-            return controller.Ok("Chat Ended!");
-        }*/
+                rate1 = (byte)context.Chats.Where(u => u.CustomerId == customerId && u.Rate == 1).Count(),
+                rate2 = (byte)context.Chats.Where(u => u.CustomerId == customerId && u.Rate == 2).Count(),
+                rate3 = (byte)context.Chats.Where(u => u.CustomerId == customerId && u.Rate == 3).Count(),
+                rate4 = (byte)context.Chats.Where(u => u.CustomerId == customerId && u.Rate == 4).Count(),
+                rate5 = (byte)context.Chats.Where(u => u.CustomerId == customerId && u.Rate == 5).Count()
+            });
+        }
         
     }
 }
