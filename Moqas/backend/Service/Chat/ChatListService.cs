@@ -44,6 +44,7 @@ namespace Moqas.Service.Chat
                     UserName = chat.UserName,
                     Status = chat.Status,
                     CreatedAt = chat.CreatedAt,
+                    Rate = chat.Rate,
                     CustomerId = chat.CustomerId
                 });
             }
