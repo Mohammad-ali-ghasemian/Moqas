@@ -162,5 +162,50 @@ namespace Moqas.Service.Chat
             catch (ObjectDisposedException ex) { }
             return controller.Ok("Chat Ended!");
         }
+        
+
+        
+        public async static Task<IActionResult> SubmitRate(ControllerBase controller, MoqasContext context, int chatId, byte rate)
+        {
+            if (rate < 1 || rate > 5)
+            {
+                return controller.BadRequest("Invalid Rate Number!");
+            }
+
+            var chat = context.Chats.FirstOrDefault(u => u.Id == chatId);
+            if (chat == null)
+            {
+                return controller.BadRequest("There is no such chat!");
+            }
+
+            chat.Rate = rate;
+            context.Chats.Update(chat);
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (ObjectDisposedException ex) { }
+            return controller.Ok("Rate Submitted!");
+        }
+
+
+
+        /*public async static Task<IActionResult> GetRates(ControllerBase controller, MoqasContext context, int customerId)
+        {
+            var chat = context.Chats.FirstOrDefault(u => u.Id == customerId);
+            if (chat == null)
+            {
+                return controller.BadRequest("There is no such chat!");
+            }
+
+            context.Chats.Update(chat);
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (ObjectDisposedException ex) { }
+            return controller.Ok("Chat Ended!");
+        }*/
+        
     }
 }

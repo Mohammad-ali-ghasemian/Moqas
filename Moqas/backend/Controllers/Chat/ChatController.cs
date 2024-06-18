@@ -62,5 +62,17 @@ namespace Moqas.Controllers.Chat
             return await ChatService.EndChat(this, _context, chatId);
         }
 
+        [HttpPut("submit-rate")]
+        public async Task<IActionResult> SubmitRate(int chatId, byte rate)
+        {
+            return await ChatService.SubmitRate(this, _context, chatId, rate);
+        }
+
+
+        /*[HttpGet("get-rates")]
+        public async Task<IActionResult> GetRates(int customerId)
+        {
+            return await ChatService.GetRates(this, _context, customerId);
+        }*/
     }
 }
