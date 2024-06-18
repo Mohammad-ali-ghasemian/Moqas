@@ -2,10 +2,10 @@
 {
     public class Rate
     {
-        public int rate1 { get; set; }
-        public int rate2 { get; set; }
-        public int rate3 { get; set; }
-        public int rate4 { get; set; }
-        public int rate5 { get; set; }
+        public byte rate1 { get; set; }
+        public byte rate2 { get; set; }
+        public byte rate3 { get; set; }
+        public byte rate4 { get; set; }
+        public byte rate5 { get; set; }
     }
 }
