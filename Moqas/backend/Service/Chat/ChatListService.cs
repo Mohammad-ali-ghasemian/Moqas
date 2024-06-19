@@ -30,11 +30,6 @@ namespace Moqas.Service.Chat
                     return controller.BadRequest("Bad filtering!");
             }
 
-            if (chats.Count == 0)
-            {
-                return controller.BadRequest("No chat found!");
-            }
-
             List<Model.Chat.Chat> convertedChats = new List<Model.Chat.Chat>();
             foreach(var chat in chats)
             {
