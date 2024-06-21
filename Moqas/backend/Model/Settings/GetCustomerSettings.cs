@@ -1,0 +1,12 @@
+﻿using static Moqas.Model.Data.CustomerSettings;
+
+namespace Moqas.Model.Settings
+{
+    public class GetCustomerSettings
+    {
+        public int CustomerId { get; set; }
+        public string? Type { get; set; }
+        public string? Key { get; set; } = string.Empty;
+        public string? Value { get; set; } = string.Empty;
+    }
+}
