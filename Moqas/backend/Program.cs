@@ -29,6 +29,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseCors("AllowLocalhost3000");
 
 app.UseHttpsRedirection();
@@ -36,6 +40,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Fallback route for SPA (React)
+app.MapFallbackToFile("index.html");
 
 app.Run();
 
