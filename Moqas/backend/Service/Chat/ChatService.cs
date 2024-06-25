@@ -89,7 +89,7 @@ namespace Moqas.Service.Chat
                 .FirstOrDefault();
             if (message == null)
             {
-                return controller.Ok("No message found!");
+                return controller.Ok(" ");
             }
             return controller.Ok(new Message
             {
