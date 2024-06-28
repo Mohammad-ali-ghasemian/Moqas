@@ -11,7 +11,8 @@ namespace Moqas.Service.Chat
         {
             FAQ,
             UI,
-            TOUR
+            TOUR,
+            EMAIL
         }
 
         public async static Task<IActionResult> InsertSetting(ControllerBase controller, MoqasContext context, GetCustomerSettings settings)
