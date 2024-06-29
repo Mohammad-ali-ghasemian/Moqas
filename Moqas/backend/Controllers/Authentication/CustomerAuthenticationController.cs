@@ -1,0 +1,83 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Moqas.Model.Authentication;
+using Moqas.Model.Data;
+using Moqas.Service.Authentication;
+
+namespace Moqas.Controllers.Authentication
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CustomerAuthenticationController : ControllerBase
+    {
+        MoqasContext _context;
+        public CustomerAuthenticationController(MoqasContext context)
+        {
+            _context = context;
+        }
+
+
+
+
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(CustomerRegister request)
+        {
+            return await CustomerRegisterService.RegisterRequestProcess(this, _context, request);
+        }
+
+        [HttpPost("email-verification-token")]
+        public async Task<IActionResult> EmailVerificationToken(string email)
+        {
+            return await EmailService.SendEmail(this, _context, email, 0);
+        }
+
+        [HttpPost("verify")]
+        public async Task<IActionResult> Verify(string verificationToken)
+        {
+            return await CustomerVerifyService.VerifyRequestProcess(this, _context, verificationToken);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(CustomerLogin request)
+        {
+            return await CustomerLoginService.LoginRequestProcess(this, _context, request);
+        }
+
+
+
+
+        [HttpPost("create-forgotPassword-token")]
+        public async Task<IActionResult> CreateForgotPasswordToken(string email)
+        {
+            return await ForgotPasswordService.CreateForgotPasswordToken(this, _context, email);
+        }
+
+        [HttpPost("email-forgotPassword-token")]
+        public async Task<IActionResult> EmailForgotPasswordToken(string email)
+        {
+            return await EmailService.SendEmail(this, _context, email, 1);
+        }
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordRequest request)
+        {
+            return await ResetPasswordService.ResetPasswordProcess(this, _context, request);
+        }
+
+
+
+
+
+        [HttpGet("get-customer")]
+        public async Task<IActionResult> GetCustomer(bool BrowserToken0Email1, string tokenEmail)
+        {
+            return await CustomerInfoService.GetCustomer(this, _context, BrowserToken0Email1, tokenEmail);
+        }
+
+        [HttpPut("logout")]
+        public async Task<IActionResult> Logout(string browserToken)
+        {
+            return await CustomerLogoutService.LogoutRequestProcess(this, _context, browserToken);
+        }
+
+    }
+}
