@@ -37,8 +37,9 @@ namespace Moqas.Service.Chat
             {
                 return controller.BadRequest("There is no such chatId!");
             }
-            AddMessage(controller, context, chatId, message, sender);
-            return controller.Ok("Message Inserted!");
+            //AddMessage(controller, context, chatId, message, sender);
+            //return controller.Ok("Message Inserted!");
+            return await AddMessage(controller, context, chatId, message, sender);
         }
 
 
@@ -50,13 +51,14 @@ namespace Moqas.Service.Chat
             {
                 return controller.BadRequest("There is no such chatId!");
             }
-            AddMessage(controller, context, chatId, message, sender);
-            return controller.Ok("Message Inserted!");
+            //AddMessage(controller, context, chatId, message, sender);
+            //return controller.Ok("Message Inserted!");
+            return await AddMessage(controller, context, chatId, message, sender);
         }
 
 
 
-        private async static void AddMessage(ControllerBase controller, MoqasContext context, int chatId, string message, string sender)
+        private async static Task<IActionResult> AddMessage(ControllerBase controller, MoqasContext context, int chatId, string message, string sender)
         {
             var newMessage = new MessagesHistory
             {
@@ -71,6 +73,11 @@ namespace Moqas.Service.Chat
                 await context.SaveChangesAsync();
             }
             catch (ObjectDisposedException ex) { }
+
+            return controller.Ok((int) context.MessagesHistory
+                .Where(u => u.ChatId == chatId)
+                .OrderByDescending(u => u.CreatedAt)
+                .FirstOrDefault().Id);
         }
 
 
