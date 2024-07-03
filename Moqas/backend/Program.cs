@@ -1,6 +1,7 @@
 using Moqas.Model.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+ConnectionString.connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Add services to the container.
 builder.Services.AddCors(options => {
