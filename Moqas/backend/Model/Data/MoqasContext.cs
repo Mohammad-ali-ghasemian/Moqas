@@ -10,8 +10,7 @@ namespace Moqas.Model.Data
         public  DbSet<CustomerSettings>? CustomerSettings { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(
-                "Server=.;Database=Moqas;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(ConnectionString.connectionString);
             base.OnConfiguring(optionsBuilder);
         }
 
