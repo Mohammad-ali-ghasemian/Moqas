@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Moqas.Model.Chat;
 using Moqas.Model.Data;
 using Moqas.Service.Chat;
 
@@ -27,15 +28,15 @@ namespace Moqas.Controllers.Chat
         }
 
         [HttpPost("send-user-message")]
-        public async Task<IActionResult> SendUserMessage(int chatId, string message)
+        public async Task<IActionResult> SendUserMessage(SendMessage sendMessage)
         {
-            return await ChatService.AddUserMessage(this, _context, chatId, message);
+            return await ChatService.AddUserMessage(this, _context, sendMessage);
         }
 
         [HttpPost("send-customer-message")]
-        public async Task<IActionResult> SendCustomerMessage(int chatId, string message)
+        public async Task<IActionResult> SendCustomerMessage(SendMessage sendMessage)
         {
-            return await ChatService.AddCustomerMessage(this, _context, chatId, message);
+            return await ChatService.AddCustomerMessage(this, _context, sendMessage);
         }
 
         [HttpGet("get-last-message")]

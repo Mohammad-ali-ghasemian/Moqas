@@ -30,30 +30,26 @@ namespace Moqas.Service.Chat
 
 
 
-        public async static Task<IActionResult> AddUserMessage(ControllerBase controller, MoqasContext context, int chatId, string message)
+        public async static Task<IActionResult> AddUserMessage(ControllerBase controller, MoqasContext context, SendMessage sendMessage)
         {
-            var sender = context.Chats.FirstOrDefault(u => u.Id == chatId).UserName;
+            var sender = context.Chats.FirstOrDefault(u => u.Id == sendMessage.ChatId).UserName;
             if (sender == null)
             {
                 return controller.BadRequest("There is no such chatId!");
             }
-            //AddMessage(controller, context, chatId, message, sender);
-            //return controller.Ok("Message Inserted!");
-            return await AddMessage(controller, context, chatId, message, sender);
+            return await AddMessage(controller, context, sendMessage.ChatId, sendMessage.Message, sender);
         }
 
 
 
-        public async static Task<IActionResult> AddCustomerMessage(ControllerBase controller, MoqasContext context, int chatId, string message)
+        public async static Task<IActionResult> AddCustomerMessage(ControllerBase controller, MoqasContext context, SendMessage sendMessage)
         {
-            var sender = context.Customers.FirstOrDefault(u => u.Id == context.Chats.FirstOrDefault(u => u.Id == chatId).CustomerId).Email;
+            var sender = context.Customers.FirstOrDefault(u => u.Id == context.Chats.FirstOrDefault(u => u.Id == sendMessage.ChatId).CustomerId).Email;
             if (sender == null)
             {
                 return controller.BadRequest("There is no such chatId!");
             }
-            //AddMessage(controller, context, chatId, message, sender);
-            //return controller.Ok("Message Inserted!");
-            return await AddMessage(controller, context, chatId, message, sender);
+            return await AddMessage(controller, context, sendMessage.ChatId, sendMessage.Message, sender);
         }
 
 
