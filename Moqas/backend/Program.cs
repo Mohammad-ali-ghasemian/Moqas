@@ -18,6 +18,17 @@ builder.Services.AddCors(options => {
                    .AllowCredentials();
         });
 });
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://mrprinter3d.ir",
+                                "https://mrprinter3d.ir")
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                   .AllowCredentials();
+        });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -39,6 +50,7 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseCors("AllowLocalhost3000");
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 
