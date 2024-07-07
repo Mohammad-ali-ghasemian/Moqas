@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Moqas.Model.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +48,12 @@ app.MapControllers();
 
 // Fallback route for SPA (React)
 app.MapFallbackToFile("index.html");
+
+/*using (var context = new MoqasContext())
+{
+    context.Database.Migrate();
+}
+*/
 
 app.Run();
 
