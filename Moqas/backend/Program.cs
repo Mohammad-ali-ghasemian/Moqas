@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Moqas.Model.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,17 @@ builder.Services.AddCors(options => {
                                 "https://localhost:3000", 
                                 "http://localhost:3001", 
                                 "https://localhost:3001")
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                   .AllowCredentials();
+        });
+});
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://mrprinter3d.ir",
+                                "https://mrprinter3d.ir")
                    .AllowAnyMethod()
                    .AllowAnyHeader()
                    .AllowCredentials();
@@ -38,6 +50,7 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseCors("AllowLocalhost3000");
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 
@@ -47,6 +60,12 @@ app.MapControllers();
 
 // Fallback route for SPA (React)
 app.MapFallbackToFile("index.html");
+
+/*using (var context = new MoqasContext())
+{
+    context.Database.Migrate();
+}
+*/
 
 app.Run();
 
