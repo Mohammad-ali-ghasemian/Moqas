@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using FakeItEasy;
+using FluentAssertions;
 
 namespace Moqas.Tests.IntegrationTest
 {
@@ -15,13 +17,7 @@ namespace Moqas.Tests.IntegrationTest
         {
             // Arrange
             var application = new MoqasFactory();
-            CustomerRegister request = new CustomerRegister
-            {
-                Email = "test@gmail.com",
-                Password = "password",
-                ConfirmPassword = "password",
-                WebsiteLink = "test.com"
-            };
+            CustomerRegister request = A.Fake<CustomerRegister>();
 
             var client = application.CreateClient();
 
@@ -31,5 +27,22 @@ namespace Moqas.Tests.IntegrationTest
             // Assert
             response.EnsureSuccessStatusCode();
         }
+
+        [Fact]
+        public async Task CustomerAuthenticationController_ResetPassword()
+        {
+            // Arrange
+            var application = new MoqasFactory();
+            ResetPasswordRequest request = A.Fake<ResetPasswordRequest>();
+
+            var client = application.CreateClient();
+
+            // Act
+            var response = await client.PostAsJsonAsync("api/CustomerAuthentication/reset-password", request);
+
+            // Assert
+            response.EnsureSuccessStatusCode();
+        }
+
     }
 }
