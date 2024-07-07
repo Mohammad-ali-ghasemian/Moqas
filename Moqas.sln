@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Moqas", "Moqas", "{26BFD21A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Moqas", "Moqas\backend\Moqas.csproj", "{97113CE8-163D-4E43-BD1C-E6CBC87A2487}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moqas.Tests", "Moqas.Tests\Moqas.Tests.csproj", "{35C49C43-FF4A-431C-B553-64E304E1E526}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +19,17 @@ Global
 		{97113CE8-163D-4E43-BD1C-E6CBC87A2487}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97113CE8-163D-4E43-BD1C-E6CBC87A2487}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97113CE8-163D-4E43-BD1C-E6CBC87A2487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35C49C43-FF4A-431C-B553-64E304E1E526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C49C43-FF4A-431C-B553-64E304E1E526}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C49C43-FF4A-431C-B553-64E304E1E526}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C49C43-FF4A-431C-B553-64E304E1E526}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{97113CE8-163D-4E43-BD1C-E6CBC87A2487} = {26BFD21A-9D68-4027-892D-618271C9FA83}
+		{35C49C43-FF4A-431C-B553-64E304E1E526} = {26BFD21A-9D68-4027-892D-618271C9FA83}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B56A7E22-0C63-4E9B-9DBC-3B57287D8299}

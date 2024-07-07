@@ -22,4 +22,8 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Moqas.Tests"/>
+  </ItemGroup>
+
 </Project>
